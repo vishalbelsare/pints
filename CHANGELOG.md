@@ -5,10 +5,27 @@ All notable changes to this project will be documented in this file.
 ## Unreleased
 
 ### Added
-- [#1417](https://github.com/pints-team/pints/pull/1417) Added a module `toy.stochastic` for stochastic models. In particular, `toy.stochastic.MarkovJumpModel` implements Gillespie's algorithm for easier future implementation of stochastic models.
+- [#1484](https://github.com/pints-team/pints/pull/1484) Added a `GaussianIntegratedLogUniformLogLikelihood` class that calculates the log-likelihood with its Gaussian noise integrated out with an uninformative prior in log-space.
+- [#1466](https://github.com/pints-team/pints/pull/1466) Added a `TransformedRectangularBoundaries` class that preserves the `RectangularBoundaries` methods after transformation.
+- [#1462](https://github.com/pints-team/pints/pull/1461) The `OptimisationController` now has a stopping criterion `max_evaluations`.
+- [#1460](https://github.com/pints-team/pints/pull/1460) [#1468](https://github.com/pints-team/pints/pull/1468) Added the `Adam` local optimiser.
+- [#1459](https://github.com/pints-team/pints/pull/1459) [#1465](https://github.com/pints-team/pints/pull/1465) Added the `iRprop-` local optimiser.
+- [#1456](https://github.com/pints-team/pints/pull/1456) Added an optional `translation` to `ScalingTransform` and added a `UnitCubeTransformation` class.
+- [#1432](https://github.com/pints-team/pints/pull/1432) Added 2 new stochastic models: production and degradation model, Schlogl's system of chemical reactions. Moved the stochastic logistic model into `pints.stochastic` to take advantage of the `MarkovJumpModel`.
 - [#1420](https://github.com/pints-team/pints/pull/1420) The `Optimiser` class now distinguishes between a best-visited point (`x_best`, with score `f_best`) and a best-guessed point (`x_guessed`, with approximate score `f_guessed`). For most optimisers, the two values are equivalent. The `OptimisationController` still tracks `x_best` and `f_best` by default, but this can be modified using the methods `set_f_guessed_tracking` and `f_guessed_tracking`.
+- [#1417](https://github.com/pints-team/pints/pull/1417) Added a module `toy.stochastic` for stochastic models. In particular, `toy.stochastic.MarkovJumpModel` implements Gillespie's algorithm for easier future implementation of stochastic models.
+- [#1413](https://github.com/pints-team/pints/pull/1413) Added classes `pints.ABCController` and `pints.ABCSampler` for Approximate Bayesian computation (ABC) samplers. Added `pints.RejectionABC` which implements a simple rejection ABC sampling algorithm.
+- [#1378](https://github.com/pints-team/pints/pull/1378) Added a class `pints.LogNormalLogLikelihood`.
 
 ### Changed
+- [#1485](https://github.com/pints-team/pints/pull/1485) PINTS is no longer tested on Ubuntu 18.04 LTS.
+- [#1479](https://github.com/pints-team/pints/pull/1479) PINTS is no longer tested on Python 3.6.
+- [#1479](https://github.com/pints-team/pints/pull/1479) The `asyncio.coroutine` decorators have been removed from all of NUTS's coroutines in order to be compatible with Python 3.11.
+- [#1466](https://github.com/pints-team/pints/pull/1466) `Transformation.convert_boundaries` will now return a `TransformedRectangularBoundaries` object if the transformation is element-wise and the given boundaries extend `RectangularBoundaries`.
+- [#1458](https://github.com/pints-team/pints/pull/1458) The `GradientDescent` optimiser now sets its default learning rate as `min(sigma0)` (it can still be changed afterwards with `set_learning_rate()`).
+- [#1445](https://github.com/pints-team/pints/pull/1445) Allowed multiple LogPDFs to be supplied to the MCMCController (one for each MCMC chain), and added an evaluator which evaluates each position on a separate callable.
+- [#1439](https://github.com/pints-team/pints/pull/1439), [#1433](https://github.com/pints-team/pints/pull/1433) PINTS is no longer tested on Python 3.5. Testing for Python 3.10 has been added.
+- [#1435](https://github.com/pints-team/pints/pull/1435) The optional Stan interface now uses (and requires) pystan 3 or newer. The ``update_data`` method has been remove (model compilation is now cached so that there is no performance benefit to using this method).
 - [#1424](https://github.com/pints-team/pints/pull/1424) Fixed a bug in PSO that caused it to use more particles than advertised.
 - [#1424](https://github.com/pints-team/pints/pull/1424) xNES, SNES, PSO, and BareCMAES no longer use a `TriangleWaveTransform` to handle rectangular boundaries (this was found to lead to optimisers diverging in some cases).
 
@@ -18,6 +35,11 @@ All notable changes to this project will be documented in this file.
 - [#1424](https://github.com/pints-team/pints/pull/1424) Removed the `TriangleWaveTransform` class previously used in some optimisers.
 
 ### Fixed
+- [#1457](https://github.com/pints-team/pints/pull/1457) Fixed typo in deprecation warning for `UnknownNoiseLikelihood`.
+- [#1455](https://github.com/pints-team/pints/pull/1455) The `s` and `inv_s` properties of `ScalingTransformation` have been replaced with private properties `_s` and `_inv_s`.
+- [#1450](https://github.com/pints-team/pints/pull/1450) Made `TransformedBoundaries` consistent with `Boundaries` by removing `range()` and adding `sample()`.
+- [#1449](https://github.com/pints-team/pints/pull/1449) Fixed a bug in `MarkovJumpModel.interpolate_mol_counts`.
+- [#1399](https://github.com/pints-team/pints/pull/1339) Fixed a bug in `DramACMC`, and fixed the number of proposal kernels to 2.
 
 
 ## [0.4.0] - 2021-12-07

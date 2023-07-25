@@ -33,12 +33,14 @@ relevant code.
 ### Particle-based methods
 - [CMA-ES](./optimisation/cmaes.ipynb)
 - [CMA-ES (bare bones version)](./optimisation/cmaes-bare.ipynb)
-- [Gradient descent](./optimisation/gradient-descent.ipynb)
 - [PSO](./optimisation/pso.ipynb)
 - [SNES](./optimisation/snes.ipynb)
 - [XNES](./optimisation/xnes.ipynb)
 
 ### Local optimisers
+- [Adam](./optimisation/adam.ipynb)
+- [Gradient descent](./optimisation/gradient-descent.ipynb)
+- [iRprop-](./optimisation/irpropmin.ipynb)
 - [Nelder-Mead](./optimisation/nelder-mead.ipynb)
 
 ### Further optimisation
@@ -76,6 +78,10 @@ relevant code.
 ### Nested sampling
 - [Ellipsoidal nested sampling](./sampling/nested-ellipsoidal-sampling.ipynb)
 - [Rejection nested sampling](./sampling/nested-rejection-sampling.ipynb)
+
+### ABC
+- [ABC-SMC sampling](./sampling/abc-smc.ipynb)
+- [Rejection ABC sampling](./sampling/rejection-abc.ipynb)
 
 ### Analysing sampling results
 - [Autocorrelation](./plotting/mcmc-autocorrelation.ipynb)
@@ -120,6 +126,8 @@ relevant code.
 - [Stochastic Degradation model](./toy/model-stochastic-degradation.ipynb)
 - [Stochastic Logistic model](./toy/model-stochastic-logistic-growth.ipynb)
 - [Stochastic Michaelis Menten model](./toy/model-stochastic-michaelis-menten.ipynb)
+- [Stochastic Production Degradation model](toy/model-stochastic-production-degradation.ipynb)
+- [Stochastic Schlogl model](toy/model-stochastic-schlogl.ipynb)
 
 ### Distributions
 - [Annulus](./toy/distribution-annulus.ipynb)
